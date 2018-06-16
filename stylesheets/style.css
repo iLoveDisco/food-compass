@@ -1,11 +1,27 @@
+h1 {
+  background: url(header.jpg)
+}
+
 body {
-  padding: 50px;
+  padding: 150px;
   background: url(wood.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   margin: 0;
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+div#info {
+  background-image: url(lightWood.jpg);
+  background-size: inherit;
+  background-attachment: initial;
+  background-repeat: no-repeat;
+
+  margin: 10px;
+  padding: 10px;
+
+  line-height: 40px;
 }
 
 a {
