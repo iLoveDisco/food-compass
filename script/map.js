@@ -6,6 +6,9 @@ var infoBox = document.getElementById("info")
 // If we should show the next marker on the map.
 var showMarker = true
 
+// The currently open markers, sorted by distance.
+var currentlyOpen = []
+
 // Create the map display.
 var map = L.map('map').setView([39.759135, -86.158368], 14.3)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -88,7 +91,7 @@ function infoText (marker, origin, destination) {
   + conditionallyShowData(marker.agency.service.intakeprocedures, "Intake procedures")
   + conditionallyShowData(marker.agency.service.whattobring, "What to bring")
   + conditionallyShowData(marker.agency.service.description, "Description")
-  + conditionallyShowData(twoDecimalPlaceMileDistance(origin, destination), null, " miles")
+  + conditionallyShowData(marker.distance, null, " miles")
   + "</p>"
 
   return info
@@ -112,6 +115,16 @@ database.forEach(function (agency) {
       marker.addTo(map)
 
     if (myCoordinates.length > 0) {
+      marker.distance = twoDecimalPlaceMileDistance([marker._latlng.lat, marker._latlng.lng], myCoordinates)
+
+      if (marker.isOpen && !currentlyOpen.includes(marker)) {
+        currentlyOpen.push(marker)
+
+        currentlyOpen.sort(function (a, b) {
+          return a.distance - b.distance
+        })
+      }
+
       marker.on('click', function () {
         marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates))
       })
@@ -127,6 +140,16 @@ function onLocationFound (e) {
   myCoordinates.push(e.latlng.lng)
 
   markers.forEach(function (m) {
+    m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng])
+
+    if (m.isOpen && !currentlyOpen.includes(m)) {
+      currentlyOpen.push(m)
+      
+      currentlyOpen.sort(function (a, b) {
+        return a.distance - b.distance
+      })
+    }
+
     m.on('click', function () {
       m.bindPopup(infoText(m, [m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng]))
     })
