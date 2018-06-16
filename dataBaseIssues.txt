@@ -1,3 +1,5 @@
+first couple updated to demonstrate our product better
+
 2: rounded hours (RH)
 3: NULL hours
 4: RH
