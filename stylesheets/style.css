@@ -1,4 +1,5 @@
 body {
+  text-align: center;
   padding: 150px;
   background: url(gray.jpg);
   background-size: cover;
@@ -6,6 +7,14 @@ body {
   background-repeat: no-repeat;
   margin: 0;
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+image#header {
+  width: 1000px;
+}
+
+input {
+  resize: horizontal;
 }
 
 div#info {
@@ -18,6 +27,7 @@ div#info {
   padding: 10px;
 
   line-height: 40px;
+  width: 800px;
 }
 
 a {
@@ -26,4 +36,6 @@ a {
 
 #map {
   height: 800px;
+  width: 800px;
+  margin: 0 auto 0 auto;
 }
