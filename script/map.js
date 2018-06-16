@@ -1,7 +1,7 @@
 // database is the giant JSON list of the database (loaded in file database.js)
 
-// Where we will input the info onto the page.
-var infoBox = document.getElementById("info")
+// Where we will input the list of currently open places.
+var openUl = document.getElementById("nearList")
 
 // If we should show the next marker on the map.
 var showMarker = true
@@ -97,6 +97,22 @@ function infoText (marker, origin, destination) {
   return info
 }
 
+// A function for adding stuff to the currently open list
+function addToOpenList(marker) {
+  currentlyOpen.push(marker)
+
+  currentlyOpen.sort(function (a, b) {
+    return a.distance - b.distance
+  })
+
+  var newHTML = ""
+  currentlyOpen.forEach(function (a) {
+    newHTML += `<li>${a.agency.name} - ${a.distance} miles</li>`
+  })
+
+  openUl.innerHTML = newHTML
+}
+
 // Get the agency locations, and store them into markers
 var provider = new window.GeoSearch.EsriProvider();
 var myCoordinates = []
@@ -118,11 +134,7 @@ database.forEach(function (agency) {
       marker.distance = twoDecimalPlaceMileDistance([marker._latlng.lat, marker._latlng.lng], myCoordinates)
 
       if (marker.isOpen && !currentlyOpen.includes(marker)) {
-        currentlyOpen.push(marker)
-
-        currentlyOpen.sort(function (a, b) {
-          return a.distance - b.distance
-        })
+        addToOpenList(marker)
       }
 
       marker.on('click', function () {
@@ -143,11 +155,7 @@ function onLocationFound (e) {
     m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng])
 
     if (m.isOpen && !currentlyOpen.includes(m)) {
-      currentlyOpen.push(m)
-      
-      currentlyOpen.sort(function (a, b) {
-        return a.distance - b.distance
-      })
+      addToOpenList(m)
     }
 
     m.on('click', function () {
