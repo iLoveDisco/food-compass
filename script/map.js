@@ -126,8 +126,6 @@ function onLocationFound (e) {
       window.scrollTo(0, 0)
     })
   })
-
-  console.log(markers.length)
 }
 
 map.on('locationfound', onLocationFound)
