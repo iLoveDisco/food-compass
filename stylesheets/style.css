@@ -37,6 +37,10 @@ img#header2 {
   
 }
 
+.leaflet-popup-content {
+  font-size: 2em;
+}
+
 li.openagency {
   background-image: url(grayButton.jpg);
 

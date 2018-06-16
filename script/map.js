@@ -154,7 +154,7 @@ database.forEach(function (agency) {
       }
 
       marker.on('click', function () {
-        marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates))
+        marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates), {maxHeight: "300px"})
       })
     }
   })
@@ -168,7 +168,7 @@ function onLocationFound (e) {
   myCoordinates.push(e.latlng.lng)
 
   markers.forEach(function (m) {
-    m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng])
+    m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng], {maxHeight: "300px"})
 
     if (m.isOpen && !currentlyOpen.includes(m)) {
       addToOpenList(m)
