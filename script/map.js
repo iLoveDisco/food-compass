@@ -149,9 +149,11 @@ function addToOpenList(marker) {
 
   var newHTML = ""
   currentlyOpen.forEach(function (a, i) {
-    newHTML += `<li class="openagency" onclick="displayInfo(this)" markerindex="${i}">
-    <p>${a.agency.name}</p>
-    <p>${a.distance} miles</p></li>`
+    if (i < 3) {
+      newHTML += `<li class="openagency" onclick="displayInfo(this)" markerindex="${i}">
+      <p>${a.agency.name}</p>
+      <p>${a.distance} miles</p></li>`
+    }
   })
 
   openUl.innerHTML = newHTML
