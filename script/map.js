@@ -1,5 +1,11 @@
 // database is the giant JSON list of the database (loaded in file database.js)
 
+// Change a variable based on being on mobile.
+var fontClass = "leaflet-popup-desktop"
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  fontClass = "leaflet-popup-mobile"
+}
+
 // Where we will input the list of currently open places.
 var openUl = document.getElementById("nearList")
 
@@ -59,7 +65,7 @@ function displayInfo(e) {
   var index = e.attributes.markerindex.value
 
   var marker = currentlyOpen[parseInt(index, 10)]
-  marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates))
+  marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates), {className: fontClass})
   marker.openPopup()
 }
 
@@ -154,7 +160,7 @@ database.forEach(function (agency) {
       }
 
       marker.on('click', function () {
-        marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates), {maxHeight: "300px"})
+        marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates), {className: fontClass})
       })
     }
   })
@@ -168,14 +174,14 @@ function onLocationFound (e) {
   myCoordinates.push(e.latlng.lng)
 
   markers.forEach(function (m) {
-    m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng], {maxHeight: "300px"})
+    m.distance = twoDecimalPlaceMileDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng], {className: fontClass})
 
     if (m.isOpen && !currentlyOpen.includes(m)) {
       addToOpenList(m)
     }
 
     m.on('click', function () {
-      m.bindPopup(infoText(m, [m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng]))
+      m.bindPopup(infoText(m, [m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng]), {className: fontClass})
     })
   })
 }
