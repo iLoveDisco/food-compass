@@ -46,6 +46,10 @@ li.openagency {
   align-items: stretch;
 }
 
+li:hover {
+  opacity: 0.4;
+  cursor: 'pointer';
+}
 
 div#info {
   background-image: url(lightWood.jpg);
