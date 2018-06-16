@@ -117,11 +117,55 @@ var lc = L.control.locate({
 }).addTo(mymap);
 lc.start();
 
+// Stolen from https://stackoverflow.com/questions/43167417/calculate-distance-between-two-points-in-leaflet (thanks)
+function toRadian(degree) {
+  return degree*Math.PI/180;
+}
+function metersToMiles(meters) {
+  return meters / 1600
+}
+function getDistance(origin, destination) {
+  // return distance in meters
+  var lon1 = toRadian(origin[1]),
+      lat1 = toRadian(origin[0]),
+      lon2 = toRadian(destination[1]),
+      lat2 = toRadian(destination[0]);
+
+  var deltaLat = lat2 - lat1;
+  var deltaLon = lon2 - lon1;
+
+  var a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
+  var c = 2 * Math.asin(Math.sqrt(a));
+  var EARTH_RADIUS = 6371;
+  return c * EARTH_RADIUS * 1000;
+}
+
 var provider = new window.GeoSearch.EsriProvider();
 
+var myCoordinates = []
+
+var markers = []
 var arrayOfLines = addresses.match(/[^\r\n]+/g);
 arrayOfLines.forEach(function (address) {
   provider.search({ query: address + ", Indianapolis, IN" }).then(function (result) {
-    L.marker([result[0].y, result[0].x]).addTo(mymap)
+    var marker = L.marker([result[0].y, result[0].x])
+    marker.addTo(mymap)
+    markers.push(marker)
+
+    if (myCoordinates.length > 0) {
+      marker.bindPopup(`<p>${Math.round(100 * metersToMiles(getDistance([marker._latlng.lat, marker._latlng.lng], myCoordinates))) / 100} miles</p>`)
+    }
   })
 })
+
+function onLocationFound (e) {
+  myCoordinates = []
+  myCoordinates.push(e.latlng.lat)
+  myCoordinates.push(e.latlng.lng)
+
+  markers.forEach(function (m) {
+    m.bindPopup(`<p>${Math.round(100 * metersToMiles(getDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng]))) / 100} miles</p>`)
+  })
+}
+
+mymap.on('locationfound', onLocationFound)
