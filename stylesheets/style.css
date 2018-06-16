@@ -37,8 +37,12 @@ img#header2 {
   
 }
 
-.leaflet-popup-content {
+.leaflet-popup-mobile {
   font-size: 2vw;
+}
+
+.leaflet-popup-desktop {
+  font-size: 14px;
 }
 
 li.openagency {
