@@ -13,9 +13,7 @@ map.js uses Leaflet, an open source JavaScrip library for map manipulation as we
 
 The JavaScript database is then read into map.js to plot the locations of the agencies (done through an add-on called Leaflet.locateControl) and its  corresponding information in the pop-up.
 
-
-=======
-
+============
 
 Preferred way to run:
 
@@ -68,6 +66,8 @@ examples:
 3T18-20 = every third Tuesday of the month from 6-8 PM
 ```
 
+============
+
 This project was completed in 22 hours for the Indy Civic Hackathon Food Compass challenge.
 
 The next steps in the development process for the web application would be less feature-based and focused primarily on sustainability. 
@@ -80,7 +80,7 @@ CSS formatting was also tedious as using the Leaflet library for the map caused 
 
 Many ideas for features that could be helpful came as possibilities but had to be written off due to time constraints. Some examples include: a search bar to find specific agencies and programs, a hypothetical search for what is open at specific times and dates (What programs are available on Friday at 6pm?), URLs for the phone numbers and addresses within the pins, and more.  If given time, we believe these are very helpful features that could benefit the reliability and value of the web application. 
 
-======
+============
 
 This was the first hackathon of any type for every member of the team. Some of us felt initial feelings of self-doubt, that our knowledge may not be enough to provide significant help and that our lack of hackathon experience may leave us handicapped in creative potential. However, our team ended up utilizing all of our skills to the best use. Sam had the most experience with JavaScript and was best able to utilize the Leaflet libraries to create the map script. Rohan knew Java and was able to provide most of the framework of the Java files that would create the database from the spreadsheet. Eric is a connoisseur of languages, who knew HTML and CSS the best and was able to handle design and formatting as well as logos while simultaneously pair programming with Rohan and Sam intermittently. 
 
