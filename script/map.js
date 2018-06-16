@@ -3,6 +3,9 @@
 // Where we will input the info onto the page.
 var infoBox = document.getElementById("info")
 
+// If we should show the next marker on the map.
+var showMarker = false
+
 // Create the map display.
 var map = L.map('map').setView([39.759135, -86.158368], 14.3)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -99,9 +102,12 @@ var markers = []
 database.forEach(function (agency) {
   provider.search({ query: agency.address + ", Indianapolis, IN" }).then(function (result) {
     var marker = L.marker([result[0].y, result[0].x])
-    marker.addTo(map)
     marker.agency = agency
+    marker.isOpen = isAgencyOpen(agency)
     markers.push(marker)
+
+    if (marker.isOpen)
+      marker.addTo(map)
 
     if (myCoordinates.length > 0) {
       marker.on('click', function () {
@@ -128,3 +134,21 @@ function onLocationFound (e) {
 }
 
 map.on('locationfound', onLocationFound)
+
+// A helper to show all markers
+function changeShowMarkers() {
+  var checkValue = document.getElementById("showMarkers")
+
+  showMarker = !showMarker
+
+  if (showMarker === true) {
+    markers.forEach(function (m) {
+      m.addTo(map)
+    })
+  } else {
+    markers.forEach(function (m) {
+      if (!isAgencyOpen(m.agency))
+        map.removeLayer(m)
+    })
+  }
+}

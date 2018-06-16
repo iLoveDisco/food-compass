@@ -60,6 +60,10 @@ var MONTHS = ["January", "February", "March", "April", "May", "June",
 
 // Read the agency date range string and decide if it is open.
 function isAgencyOpen(agency) {
+    if (!agency.service.hoursrange) {
+        return false
+    }
+
     var open = false
     var openRange = agency.service.hoursrange
     var parts = openRange.split(",")
