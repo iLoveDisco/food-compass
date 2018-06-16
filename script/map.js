@@ -53,9 +53,21 @@ function twoDecimalPlaceMileDistance (origin, destination) {
 }
 
 // The text that will be put into the info box.
-function conditionallyShowData (data) {
+function conditionallyShowData (data, header, footer) {
   if (data !== "NULL") {
-    return `${data}<br />`
+    var r = "";
+
+    if (header)
+      r += `${header}: ${data}`
+    else
+      r += `${data}`
+
+    if (footer)
+      r += footer
+    
+    r += "<br />"
+
+    return r
   } else {
     return ""
   }
@@ -68,28 +80,15 @@ function infoText (marker, origin, destination) {
   + conditionallyShowData(marker.agency.address)
   + conditionallyShowData(marker.agency.phonenumber1)
   + conditionallyShowData(marker.agency.url)
-  + conditionallyShowData(marker.agency.service.hours)
-  + conditionallyShowData(marker.agency.service.eligibility)
-  + conditionallyShowData(marker.agency.service.intakeprocedures)
-  + conditionallyShowData(marker.agency.service.whattobring)
-  + conditionallyShowData(marker.agency.service.description)
-  + conditionallyShowData(twoDecimalPlaceMileDistance(origin, destination))
+  + conditionallyShowData(marker.agency.service.hours, "Hours")
+  + conditionallyShowData(marker.agency.service.eligibility, "Eligibility")
+  + conditionallyShowData(marker.agency.service.intakeprocedures, "Intake procedures")
+  + conditionallyShowData(marker.agency.service.whattobring, "What to bring")
+  + conditionallyShowData(marker.agency.service.description, "Description")
+  + conditionallyShowData(twoDecimalPlaceMileDistance(origin, destination), null, " miles")
   + "</p>"
 
   return info
-
-  return `<p>
-  ${marker.agency.name}<br />
-  ${marker.agency.address}<br />
-  ${marker.agency.phonenumber1}<br />
-  ${marker.agency.url}<br />
-  Hours: ${marker.agency.service.hours}<br />
-  Eligibility: ${marker.agency.service.eligibility}<br />
-  Intake procedures: ${marker.agency.service.intakeprocedures}<br />
-  What to bring: ${marker.agency.service.whattobring}<br />
-  Description: ${marker.agency.service.description}<br />
-  ${twoDecimalPlaceMileDistance(origin, destination)} miles
-  </p>`
 }
 
 // Get the agency locations, and store them into markers
