@@ -37,6 +37,10 @@ img#header2 {
   
 }
 
+.leaflet-popup-content {
+  font-size: 2em;
+}
+
 li.openagency {
   background-image: url(grayButton.jpg);
 
@@ -106,7 +110,7 @@ input[type=checkbox]
 }
 
 div#map {
-  height: 800px;
+  height: 1200px;
   width: 800px;
   border-style: solid;
   border-width: 5px;
