@@ -70,10 +70,11 @@ function isAgencyOpen(agency) {
     var now = new Date(Date.now())
 
     parts.forEach(function (p) {
+        p = p.trim()
         var first = p.charAt(0)
         var occurrence = 0
         var day = ""
-        var endStart = 1
+        var endStart = 2
 
         if (isNumeric(first)) {
             occurrence = parseInt(first, 10)
@@ -85,15 +86,19 @@ function isAgencyOpen(agency) {
 
         var hoursText = p.substring(endStart, p.length)
         var hours = hoursText.split("-")
+        
+        hours.forEach(function (h, i) {
+            hours[i] = hours[i].trim()
+        })
 
         if (occurrence > 0) {
             var dayLookup = getMonthlyWeekday(occurrence, day, MONTHS[now.getMonth()], now.getFullYear())
 
-            if (now.getDate() == dayLookup && now.getHours() + 1 >= hours[0] && now.getHours() + 1 <= hours[1]) {
+            if (now.getDate() == dayLookup && parseInt(now.getHours(), 10) + 1 >= hours[0] && now.getHours() + 1 <= hours[1]) {
                 open = true
             }
         } else {
-            if (now.getDay() == DAYS[day] && now.getHours() + 1 >= hours[0] && now.getHours() + 1 <= hours[1]) {
+            if (now.getDay() == DAYS[day] && (parseInt(now.getHours(), 10)) >= hours[0] && now.getHours() + 1 <= hours[1]) {
                 open = true
             }
         }
