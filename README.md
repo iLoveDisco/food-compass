@@ -1,4 +1,4 @@
-food-compass
+food-compassff
 ============
 
 For the Food Compass Challenge at the Indy Civic Challenge, our team, Compass ProgRESs (comprising Rohan, Eric, and Sam), developed a web application implementing HTML, CSS, JavaScript, and using Java to provide a pertinent solution to the food insecurity problem that afflicts Marion County and the city of Indianapolis. 
