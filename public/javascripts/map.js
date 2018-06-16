@@ -1,5 +1,7 @@
 // database is the giant JSON list of the database
 
+var infoBox = document.getElementById("info")
+
 var mymap = L.map('mapid').setView([39.759135, -86.158368], 14.3);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -39,6 +41,23 @@ function getDistance(origin, destination) {
   var EARTH_RADIUS = 6371;
   return c * EARTH_RADIUS * 1000;
 }
+function twoDecimalPlaceMileDistance (origin, destination) {
+  return Math.round(100 * metersToMiles(getDistance(origin, destination))) / 100
+}
+function infoText (marker, origin, destination) {
+  return `<p>
+  ${marker.agency.name}<br />
+  ${marker.agency.address}<br />
+  ${marker.agency.phonenumber1}<br />
+  ${marker.agency.url}<br />
+  Hours: ${marker.agency.service.hours}<br />
+  Eligibility: ${marker.agency.service.eligibility}<br />
+  Intake procedures: ${marker.agency.service.intakeprocedures}<br />
+  What to bring: ${marker.agency.service.whattobring}<br />
+  Description: ${marker.agency.service.description}<br />
+  ${twoDecimalPlaceMileDistance(origin, destination)} miles
+  </p>`
+}
 
 var provider = new window.GeoSearch.EsriProvider();
 
@@ -49,10 +68,13 @@ database.forEach(function (agency) {
   provider.search({ query: agency.address + ", Indianapolis, IN" }).then(function (result) {
     var marker = L.marker([result[0].y, result[0].x])
     marker.addTo(mymap)
+    marker.agency = agency
     markers.push(marker)
 
     if (myCoordinates.length > 0) {
-      marker.bindPopup(`<p>${Math.round(100 * metersToMiles(getDistance([marker._latlng.lat, marker._latlng.lng], myCoordinates))) / 100} miles</p>`)
+      marker.on('click', function () {
+        infoBox.innerHTML = infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates)
+      })
     }
   })
 })
@@ -63,7 +85,9 @@ function onLocationFound (e) {
   myCoordinates.push(e.latlng.lng)
 
   markers.forEach(function (m) {
-    m.bindPopup(`<p>${Math.round(100 * metersToMiles(getDistance([m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng]))) / 100} miles</p>`)
+    m.on('click', function () {
+      infoBox.innerHTML = infoText(m, [m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng])
+    })
   })
 }
 
