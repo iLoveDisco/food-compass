@@ -66,9 +66,8 @@ button.call {
   transition: opacity .2s;
   animation: fadeInLoad 1s;
 }
-
 button.call {
-  font-size: 4vh;
+  font-size: 2vh;
 }
 
 @keyframes fadeInLoad {
