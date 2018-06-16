@@ -138,6 +138,11 @@ database.forEach(function (agency) {
     marker.isOpen = isOpen
     markers.push(marker)
 
+    // Make the marker a bit bigger.
+    var origIcon = marker.options.icon
+    origIcon.iconSize = [35, 50]
+    marker.setIcon(origIcon)
+
     if (showMarker || (!showMarker && isOpen))
       marker.addTo(map)
 
