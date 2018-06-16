@@ -12,6 +12,9 @@ var openUl = document.getElementById("nearList")
 // Where the call buttons are placed.
 var callBox = document.getElementById("call")
 
+// The header that should only be displayed if we have elements.
+var nearestHeader = document.getElementById("header2")
+
 // If we should show the next marker on the map.
 var showMarker = true
 
@@ -130,6 +133,7 @@ function infoText (marker, origin, destination) {
 // A function for adding stuff to the currently open list
 function addToOpenList(marker) {
   currentlyOpen.push(marker)
+  nearestHeader.hidden = false
 
   currentlyOpen.sort(function (a, b) {
     return a.distance - b.distance
