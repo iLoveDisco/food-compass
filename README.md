@@ -1,23 +1,23 @@
 food-compass
 ============
 
-For the Food Compass Challenge at the Indy Civic Challenge, our team, Compass ProgRESs (comprising Rohan, Eric, and Sam), developed a web application implementing HTML, CSS, JavaScript, and using Java to provide a pertinent solution to the food insecurity problem that afflicts Marion County and the city of Indianapolis. 
+For the Food Compass Challenge at the Indy Civic Challenge 2018, our team, Compass ProgRESs (comprising [Rohan](https://github.com/rohanvarshney), [Eric](https://github.com/iLoveDisco), and [Sam](https://github.com/Sammidysam)), developed a static web application using HTML, CSS, JavaScript, and Java (for data management), to provide a pertinent solution to the food insecurity problem that afflicts Marion County and the city of Indianapolis.
 
-Our web application is titled ‘Food Compass’ as per the result of the ICL session, and presents the user with a list, checkbox, and map.
-The map is focused on Indianapolis, and features pins that correlate to various local and state-based agencies that can provide resources and assistance for people with food insecurity.
+Our web application is titled ‘Food Compass’ as per the result of the library meeting, and presents the user with lists, a checkbox, and a map.
+The map is focused on Indianapolis, and features pins that correlate to various local and state-based agencies that can provide resources and assistance for people with food insecurity, as per the 211 database.
 These locations range from local, charities, churches, and established programs that are spread widely throughout the county.
 The checkbox gives the option to hide pins that may not be relevant, effectively filtering agencies that are not immediately relevant, open, or accessible to the user.
 The list provides a list of agencies that are both open and accessible to the user (with certain considerations).
-The app was equally designed for both a phone setting and a PC setting.
+The app was designed with mobile in mind, but with respect to desktop.
 
-The pins themselves on the map provide a myriad of information upon double-clicking: the name of the agency, its address, phone number, website URL, distance, and relevant information regarding procedures and requirements.
+The pins themselves on the map provide a myriad of information upon clicking: the name of the agency, its address, phone number, website URL, distance, and relevant information regarding procedures and requirements.
 In order to process this, a database had to be created from Food_Panty_ExcelExport.xls, provided in “https://indychamber.com/hack/“.
-In order to manipulate it, we modified columns of data that were redundant, exported the spreadsheet into a csv (Comma Separated Values) file, then read them into Java.
+In order to manipulate it, we modified columns of data that were redundant, exported the spreadsheet into a CSV (Comma Separated Values) file, then read them into Java.
 We created Agency and Service classes to read the csv file and store it into an ArrayList.
 
-We then created a method that would be able to print out this database into a JavaScript file that would be used as the official database for map.js to implement. 
+We then created a method that would be able to print out this database into a JavaScript file that would be used as the official database for our website to use. 
 
-map.js uses Leaflet, an open source JavaScrip library for map manipulation as well as the open source StreetMap data.
+map.js uses Leaflet, an open source JavaScrip library for map manipulation as well as the OpenStreetMap data.
 It allows us to create a map frame that shows our current location, and offers maneuverability of the map itself.
 A function was created so that the time range for the agency’s opening hours could be read in by JavaScript, which required hand-coding it into the database according to the format (f.e. the third Tuesday every month from 6pm to 9pm = “3T18-21”).
 
@@ -31,6 +31,9 @@ Preferred way to run:
 npm install -g simplehttpserver
 simplehttpserver
 ```
+
+Why?
+Esri gets upset at our geolocating commands when we do not run a server.
 
 Database structure:
 
@@ -80,11 +83,12 @@ examples:
 
 This project was completed in 22 hours for the Indy Civic Hackathon Food Compass challenge.
 
-The next steps in the development process for the web application would be less feature-based and focused primarily on sustainability. 
+The next steps in the development process for the web application would be less feature-based and focused primarily on sustainability.
+For example, storing the database externally rather than local to the file.
 
 Many of the minor issues that were encountered regarded data cleaning and initial set-up of the map plot.
 The Food_Panty_ExcelExport.xls sheet was not organized in a standardized way or in a format convenient for data manipulation.
-If the file contained commas already, then exporting the spreadsheet to a csv file would cause problems.
+If the file contained commas already, then exporting the spreadsheet to a CSV file would cause problems.
 Also, in order for our java file to read the csv file  into the database, it read line by line but some cells within the spreadsheet had multiple lines of its own that caused unforeseen issues.
 Much time was spent formatting this information for appropriate exporting while other teammates concurrently had to overcome a learning curve with the new JavaScript libraries.
 
@@ -102,13 +106,13 @@ If given time, we believe these are very helpful features that could benefit the
 ============
 
 This was the first hackathon of any type for every member of the team.
-Some of us felt initial feelings of self-doubt, that our knowledge may not be enough to provide significant help and that our lack of hackathon experience may leave us handicapped in creative potential. However, our team ended up utilizing all of our skills to the best use.
+Some of us felt initial feelings of self-doubt, that our knowledge may not be enough to provide significant help and that our lack of hackathon experience may leave us handicapped in creative potential.
+However, our team ended up utilizing all of our skills to the best use.
 Sam had the most experience with JavaScript and was best able to utilize the Leaflet libraries to create the map script.
 Rohan knew Java and was able to provide most of the framework of the Java files that would create the database from the spreadsheet.
 Eric is a connoisseur of languages, who knew HTML and CSS the best and was able to handle design and formatting as well as logos while simultaneously pair programming with Rohan and Sam intermittently. 
 
-The team was formed spontaneously but ended up being a strongly functioning team where each member could work on their strengths to create the wholistic product.
-With Sam on deciphering, Eric on design, and Rohan on documentation, while also engaging in collaboration for issues that didn’t play to a single person’s strength (data mining, feature blueprint, etc.).
+The team was formed spontaneously but ended up being a strongly functioning team where each member could work on their strengths to create the final product, with Sam on deciphering, Eric on design, and Rohan on documentation, while also engaging in collaboration for issues that didn’t play to a single person’s strength (data mining, feature blueprint, etc.).
 
 Ultimately, the hackathon and its challenges were able to form an environment that produced a team that was ready to rise up to the occasion.
 Optimistically, we believed that we produced a product that may provide a viable way to aid the ailment of food insecurity in Indianapolis.
