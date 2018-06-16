@@ -9,6 +9,9 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 // Where we will input the list of currently open places.
 var openUl = document.getElementById("nearList")
 
+// Where the call buttons are placed.
+var callBox = document.getElementById("call")
+
 // If we should show the next marker on the map.
 var showMarker = true
 
@@ -119,6 +122,14 @@ function addToOpenList(marker) {
   currentlyOpen.sort(function (a, b) {
     return a.distance - b.distance
   })
+
+  if (callBox.children.length == 2) {
+    callBox.removeChild(callBox.lastChild)
+  }
+
+  callBox.innerHTML += `<button type="button" class="call"><a href="tel:${marker.agency.phonenumber1}">
+  Call ${marker.agency.name}
+</a></button>`
 
   var newHTML = ""
   currentlyOpen.forEach(function (a, i) {
