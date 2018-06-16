@@ -46,7 +46,7 @@ li.openagency {
   align-items: stretch;
 }
 
-li:hover {
+li.openagency:hover {
   opacity: 0.4;
   cursor: 'pointer';
 }
