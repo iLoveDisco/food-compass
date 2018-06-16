@@ -20,6 +20,29 @@ img#header {
   margin: 0;
 }
 
+#nearList {
+  display: flex;
+  list-style-type: none;
+  margin: 0 -4px -4px 0;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+  
+}
+
+li {
+  flex: 1 0 200px;
+  height: 100px;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  border-radius: 15px;
+
+  
+}
+
 
 div#info {
   background-image: url(lightWood.jpg);

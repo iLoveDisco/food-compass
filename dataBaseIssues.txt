@@ -1,0 +1,38 @@
+2: rounded hours (RH)
+3: NULL hours
+4: RH
+5: RH
+7: RH
+11: RH
+12: undefined end, RH
+18: RH
+19: RH
+20: date exceptions aren’t accounted for
+23: undefined end
+25: RH
+27: RH
+30: RH
+32: RH
+33: RH
+34: RH
+37: RH
+38: RH
+39: RH
+41: RH
+42: RH
+43: requires appointment
+50: NULL hours
+51: RH
+53: requires appointment
+54: RH
+59: RH
+62: RH
+64-79: NULL hours
+82: RH
+86: RH
+87: RH
+88: RH
+89: RH
+90: NULL hours
+96: RH
+98: RH
