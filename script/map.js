@@ -54,6 +54,15 @@ function getDistance(origin, destination) {
   return c * EARTH_RADIUS * 1000;
 }
 
+// Function to display info about the near agency.
+function displayInfo(e) {
+  var index = e.attributes.markerindex.value
+
+  var marker = currentlyOpen[parseInt(index, 10)]
+  marker.bindPopup(infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates))
+  marker.openPopup()
+}
+
 function twoDecimalPlaceMileDistance (origin, destination) {
   return Math.round(100 * metersToMiles(getDistance(origin, destination))) / 100
 }
@@ -106,8 +115,10 @@ function addToOpenList(marker) {
   })
 
   var newHTML = ""
-  currentlyOpen.forEach(function (a) {
-    newHTML += `<li>${a.agency.name} <br> ${a.distance} miles</li>`
+  currentlyOpen.forEach(function (a, i) {
+    newHTML += `<li class="openagency" onclick="displayInfo(this)" markerindex="${i}">
+    <p>${a.agency.name}</p>
+    <p>${a.distance} miles</p></li>`
   })
 
   openUl.innerHTML = newHTML

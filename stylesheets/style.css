@@ -31,7 +31,7 @@ img#header {
   
 }
 
-li {
+li.openagency {
   flex: 1 0 200px;
   height: 100px;
   border-right: 2px solid black;
@@ -39,6 +39,7 @@ li {
   border-bottom: 2px solid black;
   border-top: 2px solid black;
   border-radius: 15px;
+  cursor: pointer;
 
   max-width: 800px;
   flex-basis: 20px;
