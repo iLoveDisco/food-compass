@@ -107,7 +107,7 @@ function addToOpenList(marker) {
 
   var newHTML = ""
   currentlyOpen.forEach(function (a) {
-    newHTML += `<li>${a.agency.name} - ${a.distance} miles</li>`
+    newHTML += `<li>${a.agency.name} <br> ${a.distance} miles</li>`
   })
 
   openUl.innerHTML = newHTML
