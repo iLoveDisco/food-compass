@@ -74,6 +74,7 @@ database.forEach(function (agency) {
     if (myCoordinates.length > 0) {
       marker.on('click', function () {
         infoBox.innerHTML = infoText(marker, [marker._latlng.lat, marker._latlng.lng], myCoordinates)
+        window.scrollTo(0, 0)
       })
     }
   })
@@ -87,6 +88,7 @@ function onLocationFound (e) {
   markers.forEach(function (m) {
     m.on('click', function () {
       infoBox.innerHTML = infoText(m, [m._latlng.lat, m._latlng.lng], [e.latlng.lat, e.latlng.lng])
+      window.scrollTo(0, 0)
     })
   })
 }
