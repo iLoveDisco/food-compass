@@ -27,3 +27,19 @@ Agency
     whattobring:string
     servicearea:string
 ```
+
+Hours format:
+
+```
+M=Monday
+T=Tuesday
+W=Wednesday
+R=Thursday
+F=Friday
+S=Saturday
+U=Sunday
+
+examples:
+3T10-12 = every third Tuesday of the month from 10-12
+3T18-20 = every third Tuesday of the month from 6-8 PM
+```
