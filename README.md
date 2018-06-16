@@ -10,6 +10,10 @@ simplehttpserver
 
 Database structure:
 
+Each item that does not have "(opt)" at the end is required.
+(It will be "NULL" if we do not have the data)
+An "(opt)" item can not exist in the database if we do not have it.
+
 ```
 Agency
   id:string
@@ -22,6 +26,7 @@ Agency
   service
     description:string
     hours:string
+    hoursrange:string (opt)
     eligibility:string
     intakeprocedures:string
     whattobring:string
@@ -29,6 +34,9 @@ Agency
 ```
 
 Hours format:
+
+This is the format for the `service.hoursrange` variable.
+It follows a defined language to determine which ranges are acceptable.
 
 ```
 M=Monday
