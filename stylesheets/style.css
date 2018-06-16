@@ -89,6 +89,22 @@ a {
   color: #00B7FF;
 }
 
+#header3 {
+  padding: 0;
+  margin: 0;
+}
+
+input[type=checkbox]
+{
+  height: 40px;
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
 div#map {
   height: 800px;
   width: 800px;
