@@ -73,20 +73,32 @@ function twoDecimalPlaceMileDistance (origin, destination) {
   return Math.round(100 * metersToMiles(getDistance(origin, destination))) / 100
 }
 
+var icons = {
+  name: '',
+  address: '<i class="fas fa-map-pin"></i>',
+  phonenumber: '<i class="fas fa-phone"></i>',
+  url: '<i class="fas fa-globe"></i>',
+  hours: '<i class="far fa-clock"></i>',
+  eligibility: 'Eligibility: ',
+  intake: 'Intake Procedures: ',
+  bring: 'What to Bring: ',
+  desc: '<i class="fas fa-align-justify"></i>',
+  dist: '<i class="fas fa-road"></i>'
+}
+
 // The text that will be put into the info box.
-function conditionallyShowData (data, header, footer) {
+function conditionallyShowData (data, dataType, header, footer) {
   if (data !== "NULL") {
     var r = "";
 
-    if (header)
-      r += `${header}: ${data}`
-    else
-      r += `${data}`
-
-    if (footer)
-      r += footer
     
-    r += "<br />"
+    r += `${icons[dataType]} ${data}`
+    
+
+    if(dataType == "dist")
+      r += ' miles'
+    
+    r += "<br /><br />"
 
     return r
   } else {
@@ -97,16 +109,16 @@ function conditionallyShowData (data, header, footer) {
 function infoText (marker, origin, destination) {
   var info = "<p>"
 
-  info += conditionallyShowData(marker.agency.name)
-  + conditionallyShowData(marker.agency.address)
-  + conditionallyShowData(marker.agency.phonenumber1)
-  + conditionallyShowData(marker.agency.url)
-  + conditionallyShowData(marker.agency.service.hours, "Hours")
-  + conditionallyShowData(marker.agency.service.eligibility, "Eligibility")
-  + conditionallyShowData(marker.agency.service.intakeprocedures, "Intake procedures")
-  + conditionallyShowData(marker.agency.service.whattobring, "What to bring")
-  + conditionallyShowData(marker.agency.service.description, "Description")
-  + conditionallyShowData(marker.distance, null, " miles")
+  info += conditionallyShowData(marker.agency.name,'name')
+  + conditionallyShowData(marker.agency.address,'address')
+  + conditionallyShowData(marker.agency.phonenumber1,'phonenumber')
+  + conditionallyShowData(marker.agency.url,'url')
+  + conditionallyShowData(marker.agency.service.hours,'hours', "Hours")
+  + conditionallyShowData(marker.agency.service.eligibility,'eligibility', "Eligibility")
+  + conditionallyShowData(marker.agency.service.intakeprocedures,'intake', "Intake procedures")
+  + conditionallyShowData(marker.agency.service.whattobring,'bring', "What to bring")
+  + conditionallyShowData(marker.agency.service.description,'desc', "Description")
+  + conditionallyShowData(marker.distance,'dist', " miles")
   + "</p>"
 
   return info
