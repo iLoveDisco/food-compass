@@ -4,7 +4,7 @@
 var infoBox = document.getElementById("info")
 
 // If we should show the next marker on the map.
-var showMarker = false
+var showMarker = true
 
 // Create the map display.
 var map = L.map('map').setView([39.759135, -86.158368], 14.3)
@@ -106,7 +106,7 @@ database.forEach(function (agency) {
     marker.isOpen = isAgencyOpen(agency)
     markers.push(marker)
 
-    if (marker.isOpen)
+    if (showMarker || (!showMarker && marker.isOpen))
       marker.addTo(map)
 
     if (myCoordinates.length > 0) {
