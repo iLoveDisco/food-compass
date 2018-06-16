@@ -67,7 +67,7 @@ button.call {
   animation: fadeInLoad 1s;
 }
 button.call {
-  font-size: 2vh;
+  font-size: inherit;
 }
 
 @keyframes fadeInLoad {
