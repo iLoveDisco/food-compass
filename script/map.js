@@ -53,7 +53,31 @@ function twoDecimalPlaceMileDistance (origin, destination) {
 }
 
 // The text that will be put into the info box.
+function conditionallyShowData (data) {
+  if (data !== "NULL") {
+    return `${data}<br />`
+  } else {
+    return ""
+  }
+}
+
 function infoText (marker, origin, destination) {
+  var info = "<p>"
+
+  info += conditionallyShowData(marker.agency.name)
+  + conditionallyShowData(marker.agency.address)
+  + conditionallyShowData(marker.agency.phonenumber1)
+  + conditionallyShowData(marker.agency.url)
+  + conditionallyShowData(marker.agency.service.hours)
+  + conditionallyShowData(marker.agency.service.eligibility)
+  + conditionallyShowData(marker.agency.service.intakeprocedures)
+  + conditionallyShowData(marker.agency.service.whattobring)
+  + conditionallyShowData(marker.agency.service.description)
+  + conditionallyShowData(twoDecimalPlaceMileDistance(origin, destination))
+  + "</p>"
+
+  return info
+
   return `<p>
   ${marker.agency.name}<br />
   ${marker.agency.address}<br />
@@ -102,6 +126,8 @@ function onLocationFound (e) {
       window.scrollTo(0, 0)
     })
   })
+
+  console.log(markers.length)
 }
 
 map.on('locationfound', onLocationFound)
