@@ -101,12 +101,14 @@ var markers = []
 
 database.forEach(function (agency) {
   provider.search({ query: agency.address + ", Indianapolis, IN" }).then(function (result) {
-    var marker = L.marker([result[0].y, result[0].x])
+    var isOpen = isAgencyOpen(agency)
+
+    var marker = L.marker([result[0].y, result[0].x], { icon: isOpen ? blueIcon : greyIcon })
     marker.agency = agency
-    marker.isOpen = isAgencyOpen(agency)
+    marker.isOpen = isOpen
     markers.push(marker)
 
-    if (showMarker || (!showMarker && marker.isOpen))
+    if (showMarker || (!showMarker && isOpen))
       marker.addTo(map)
 
     if (myCoordinates.length > 0) {
