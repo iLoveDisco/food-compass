@@ -40,7 +40,9 @@ li {
   border-top: 2px solid black;
   border-radius: 15px;
 
-  
+  max-width: 800px;
+  flex-basis: 20px;
+  align-items: stretch;
 }
 
 
@@ -55,6 +57,7 @@ div#info {
 
   line-height: 40px;
   width: 800px;
+  flex-basis: 20px;
 }
 
 a {
