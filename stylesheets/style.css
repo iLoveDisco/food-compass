@@ -34,8 +34,17 @@ a {
   color: #00B7FF;
 }
 
-#map {
+div#border {
+  margin: 0 auto 0 auto;
+  
+  
+}
+
+div#map {
   height: 800px;
   width: 800px;
   margin: 0 auto 0 auto;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 15px;
 }
