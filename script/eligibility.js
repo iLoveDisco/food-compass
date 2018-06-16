@@ -16,4 +16,5 @@ function isMarkerInsidePolygon(coordinates, poly) {
     return inside;
 }
 
-// 
+// That's the end of this!  More eligibility stuff will be added later.
+// Read zip code polygons from https://raw.githubusercontent.com/OpenDataDE/State-zip-code-GeoJSON/master/in_indiana_zip_codes_geo.min.json

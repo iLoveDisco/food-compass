@@ -66,8 +66,8 @@ li.openagency {
   }
 }
 
-li:hover {
-  opacity: 0.2;
+li.openagency:hover {
+  opacity: 0.4;
   cursor: 'pointer';
 }
 
