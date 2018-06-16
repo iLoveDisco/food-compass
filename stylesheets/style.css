@@ -4,7 +4,7 @@ body {
   margin-left: auto;
   margin-right: auto;
 
-  background: url(gray.jpg);
+  background: url(../img/gray.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -48,7 +48,7 @@ img#header2 {
 
 li.openagency,
 button.call {
-  background-image: url(grayButton.jpg);
+  background-image: url(../img/grayButton.jpg);
 
   flex: 1 0 200px;
   height: 100px;
@@ -80,13 +80,14 @@ button.call {
   }
 }
 
-li.openagency:hover {
+li.openagency:hover,
+button.call:hover {
   opacity: 0.4;
   cursor: 'pointer';
 }
 
 div#info {
-  background-image: url(lightWood.jpg);
+  background-image: url(../img/lightWood.jpg);
   background-size: inherit;
   background-attachment: initial;
   background-repeat: no-repeat;
