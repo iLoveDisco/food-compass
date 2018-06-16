@@ -142,9 +142,8 @@ function addToOpenList(marker) {
   if (callBox.children.length == 2) {
     callBox.removeChild(callBox.lastChild)
   }
-
   callBox.innerHTML += `<button type="button" class="call"><a href="tel:${marker.agency.phonenumber1}">
-  Call ${marker.agency.name}
+  <i class="fas fa-phone"></i> Call ${marker.agency.name}
 </a></button>`
 
   var newHTML = ""
