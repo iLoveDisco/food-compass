@@ -1,10 +1,6 @@
-h1 {
-  background: url(header.jpg)
-}
-
 body {
   padding: 150px;
-  background: url(wood.jpg);
+  background: url(gray.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
