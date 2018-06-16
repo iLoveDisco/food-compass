@@ -122,7 +122,7 @@ database.forEach(function (agency) {
   provider.search({ query: agency.address + ", Indianapolis, IN" }).then(function (result) {
     var isOpen = isAgencyOpen(agency)
 
-    var marker = L.marker([result[0].y, result[0].x], { icon: isOpen ? blueIcon : greyIcon })
+    var marker = L.marker([result[0].y, result[0].x], { icon: isOpen ? blueIcon : (agency.service.hoursrange ? blackIcon : greyIcon) })
     marker.agency = agency
     marker.isOpen = isOpen
     markers.push(marker)
