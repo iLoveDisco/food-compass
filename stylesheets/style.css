@@ -1,12 +1,137 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: url(../img/gray.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+
+  border-collapse: collapse;
+  text-align: center;
+}
+
+img#header {
+  top: 0;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+img#header2 {
+  padding: 0;
+  margin: 0;
+}
+
+#nearList,
+#call {
+  display: flex;
+  list-style-type: none;
+ 
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+
+.leaflet-popup-mobile {
+  font-size: 3vw;
+}
+
+.leaflet-popup-desktop {
+  font-size: 14px;
+}
+
+li.openagency,
+button.call {
+  background-image: url(../img/grayButton.jpg);
+
+  flex: 1 0 200px;
+  height: 100px;
+  border-right: 1.5px solid black;
+  border-left: 1.5px solid black;
+  border-bottom: 1.5px solid black;
+  border-top: 1.5px solid black;
+  border-radius: 15px;
+  cursor: pointer;
+
+  max-width: 800px;
+  flex-basis: 20px;
+  align-items: stretch;
+
+  transition: opacity .2s;
+  animation: fadeInLoad 1s;
+}
+button.call {
+  font-size: inherit;
+}
+
+@keyframes fadeInLoad {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+
+li.openagency:hover,
+button.call:hover {
+  opacity: 0.4;
+  cursor: 'pointer';
+}
+
+div#info {
+  background-image: url(../img/lightWood.jpg);
+  background-size: inherit;
+  background-attachment: initial;
+  background-repeat: no-repeat;
+
+  margin: 10px;
+  padding: 10px;
+
+  line-height: 40px;
+  width: 800px;
+  flex-basis: 20px;
 }
 
 a {
   color: #00B7FF;
 }
 
-#mapid {
-  height: 800px;
+#hide {
+  padding: 0;
+  margin: 10px;
+  font-size: 1.3em;
+  text-align:left;
+  margin-left: 350px;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+}
+
+div#map {
+  height: 100vh;
+  width: 800px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 15px;
+  align-content: center;
+
+  margin-left: auto;
+  margin-right: auto;
 }
